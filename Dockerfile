@@ -25,13 +25,5 @@ COPY entrypoint.sh /var/www/app/entrypoint.sh
 
 RUN yarn install
 
-# Add user so we don't need --no-sandbox.
-RUN addgroup -S pptruser \
-      && adduser -S -g pptruser pptruser \
-      && mkdir -p /home/pptruser/Downloads /app \
-      && chown -R pptruser:pptruser /home/pptruser \
-      && chown -R pptruser:pptruser /var/www/app
-USER pptruser
-
 # Run everything after as non-privileged user.
 ENTRYPOINT /var/www/app/entrypoint.sh
