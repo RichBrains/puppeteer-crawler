@@ -19,11 +19,7 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
 WORKDIR /var/www/app
 RUN mkdir -p /var/www/app
 
-COPY package.json /var/www/app/package.json
-COPY yarn.lock /var/www/app/yarn.lock
 COPY entrypoint.sh /var/www/app/entrypoint.sh
-
-RUN yarn install
 
 # Run everything after as non-privileged user.
 ENTRYPOINT /var/www/app/entrypoint.sh
